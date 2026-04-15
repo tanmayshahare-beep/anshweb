@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, TrendingUp, Users, BookOpen, Award, Target, Zap, Shield, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Accordion,
   AccordionContent,
@@ -11,6 +10,9 @@ import {
 } from "@/components/ui/accordion";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { CONTENT } from "@/content";
+
+const { site, hero, stats, about, programmes, whyChoose, mentors, testimonials, faq, enroll } = CONTENT;
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -19,63 +21,54 @@ const fadeInUp = {
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15
-    }
-  }
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
 };
 
+const whyIcons = [Shield, TrendingUp, Users];
+const statIcons = [Users, Target, TrendingUp, BookOpen];
+
 export default function Home() {
+  const duplicatedTestimonials = [...testimonials.list, ...testimonials.list];
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary selection:text-primary-foreground">
       <Navbar />
 
-      {/* HERO SECTION */}
+      {/* HERO */}
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
-        {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-background/80 md:bg-background/60 bg-gradient-to-r from-background via-background/90 to-background/40 z-10" />
-          <img 
-            src="/hero.png" 
-            alt="Trading Desk" 
-            className="w-full h-full object-cover object-center"
-          />
+          <img src={hero.image} alt="Trading Desk" className="w-full h-full object-cover object-center" />
         </div>
 
         <div className="container relative z-20 mx-auto px-4 md:px-6">
           <div className="max-w-3xl">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
-            >
+            <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
               <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold mb-6">
                 <Zap className="w-4 h-4" />
-                <span>India's Premium Trading Academy</span>
+                <span>{site.tagline}</span>
               </motion.div>
-              
+
               <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
-                Master the Markets.<br />
+                {hero.headline}<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-400">
-                  Command Your Future.
+                  {hero.headlineHighlight}
                 </span>
               </motion.h1>
-              
+
               <motion.p variants={fadeInUp} className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
-                URJA empowers everyday people to become confident investors. Learn through structured, practical, expert-led training designed for real-world results.
+                {hero.description}
               </motion.p>
-              
+
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
                 <a href="#enroll">
                   <Button size="lg" className="h-14 px-8 text-base font-semibold w-full sm:w-auto hover-elevate">
-                    Start Your Journey <ArrowRight className="ml-2 w-5 h-5" />
+                    {hero.primaryCta} <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </a>
                 <a href="#programmes">
                   <Button variant="outline" size="lg" className="h-14 px-8 text-base font-semibold w-full sm:w-auto border-primary/20 hover:bg-primary/10 hover:text-primary transition-colors">
-                    Explore Programmes
+                    {hero.secondaryCta}
                   </Button>
                 </a>
               </motion.div>
@@ -88,57 +81,44 @@ export default function Home() {
       <section className="border-y border-border/50 bg-card/50 relative z-30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10">
-            {[
-              { number: "5,000+", label: "Students Trained", icon: Users },
-              { number: "8+", label: "Years Experience", icon: Target },
-              { number: "95%", label: "Success Rate", icon: TrendingUp },
-              { number: "10+", label: "Expert Programmes", icon: BookOpen },
-            ].map((stat, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex flex-col items-center md:items-start text-center md:text-left"
-              >
-                <div className="text-primary mb-3">
-                  <stat.icon className="w-8 h-8 opacity-80" />
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold mb-1">{stat.number}</h3>
-                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{stat.label}</p>
-              </motion.div>
-            ))}
+            {stats.map((stat, i) => {
+              const Icon = statIcons[i];
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex flex-col items-center md:items-start text-center md:text-left"
+                >
+                  <div className="text-primary mb-3">
+                    <Icon className="w-8 h-8 opacity-80" />
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-1">{stat.number}</h3>
+                  <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{stat.label}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ABOUT US */}
+      {/* ABOUT */}
       <section id="about" className="py-24 relative">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
-            >
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
               <motion.h2 variants={fadeInUp} className="text-3xl md:text-5xl font-bold mb-6">
-                Not a Generic Coaching Center. <span className="text-primary">A Launchpad.</span>
+                {about.headlinePre} <span className="text-primary">{about.headlineHighlight}</span>
               </motion.h2>
-              <motion.p variants={fadeInUp} className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                "URJA" means energy. We believe that with the right momentum and structured knowledge, anyone can decode the complexities of the stock market. 
-              </motion.p>
-              <motion.p variants={fadeInUp} className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Our mission is to make institutional-grade financial education accessible to Indians. We replace textbook theories with live charts, real capital, and battle-tested strategies.
-              </motion.p>
-              
+              {about.paragraphs.map((p, i) => (
+                <motion.p key={i} variants={fadeInUp} className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                  {p}
+                </motion.p>
+              ))}
               <motion.div variants={fadeInUp} className="space-y-4">
-                {[
-                  "Practical, hands-on learning environment",
-                  "Mentorship from active market participants",
-                  "Focus on psychology and risk management"
-                ].map((item, i) => (
+                {about.bullets.map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <CheckCircle2 className="text-primary w-6 h-6 shrink-0" />
                     <span className="font-medium">{item}</span>
@@ -146,7 +126,7 @@ export default function Home() {
                 ))}
               </motion.div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -156,7 +136,7 @@ export default function Home() {
             >
               <div className="aspect-[4/5] rounded-2xl overflow-hidden relative">
                 <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10" />
-                <img src="/about.png" alt="Coaching Studio" className="w-full h-full object-cover" />
+                <img src={about.image} alt="Coaching Studio" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -bottom-8 -left-8 bg-card p-6 rounded-xl border border-border shadow-xl w-64 hidden md:block">
                 <div className="flex gap-4 items-center mb-2">
@@ -164,56 +144,27 @@ export default function Home() {
                     <Award className="w-6 h-6" />
                   </div>
                   <div>
-                    <div className="font-bold text-2xl">SEBI</div>
-                    <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Registered</div>
+                    <div className="font-bold text-2xl">{about.badge.title}</div>
+                    <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider">{about.badge.subtitle}</div>
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground leading-tight">Learn from certified professionals with proven track records.</p>
+                <p className="text-sm text-muted-foreground leading-tight">{about.badge.description}</p>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* COURSES */}
+      {/* PROGRAMMES */}
       <section id="programmes" className="py-24 bg-card/30 border-y border-border/50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Mastery Programmes</h2>
-            <p className="text-lg text-muted-foreground">From absolute basics to algorithmic automation. Choose the track that aligns with your ambition.</p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">{programmes.headline}</h2>
+            <p className="text-lg text-muted-foreground">{programmes.description}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Stock Market Fundamentals",
-                desc: "Perfect for beginners. Understand market mechanics, basic terminology, and how to start investing safely.",
-                duration: "4 Weeks",
-                image: "/course-1.png",
-                level: "Beginner"
-              },
-              {
-                title: "Technical Analysis Mastery",
-                desc: "Read charts like a pro. Master price action, indicators, and chart patterns to time your entries and exits.",
-                duration: "8 Weeks",
-                image: "/course-2.png",
-                level: "Intermediate"
-              },
-              {
-                title: "Options & Derivatives",
-                desc: "Leverage volatility. Learn advanced hedging strategies, greeks, and high-probability setups.",
-                duration: "6 Weeks",
-                image: "/course-3.png",
-                level: "Advanced"
-              },
-              {
-                title: "Advanced Algo Trading",
-                desc: "Automate your edge. Build, backtest, and deploy algorithmic trading systems using Python.",
-                duration: "12 Weeks",
-                image: "/course-4.png",
-                level: "Expert"
-              }
-            ].map((course, i) => (
+            {programmes.courses.map((course, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
@@ -253,43 +204,30 @@ export default function Home() {
       <section id="why-us" className="py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Why Choose URJA?</h2>
-            <p className="text-lg text-muted-foreground">We don't just teach theory. We build traders.</p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">{whyChoose.headline}</h2>
+            <p className="text-lg text-muted-foreground">{whyChoose.description}</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Active Market Mentors",
-                desc: "Learn from traders who are in the trenches every day, not just academicians.",
-                icon: Shield
-              },
-              {
-                title: "Live Trading Sessions",
-                desc: "Apply concepts in real-time with live market hours hand-holding and analysis.",
-                icon: TrendingUp
-              },
-              {
-                title: "Lifetime Community",
-                desc: "Join an elite network of alumni. Get continuous support, trade setups, and market updates.",
-                icon: Users
-              }
-            ].map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-2xl bg-card border border-border"
-              >
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
-                  <feature.icon className="w-7 h-7" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.desc}</p>
-              </motion.div>
-            ))}
+            {whyChoose.features.map((feature, i) => {
+              const Icon = whyIcons[i];
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="p-8 rounded-2xl bg-card border border-border"
+                >
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+                    <Icon className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{feature.desc}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -299,29 +237,14 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">Meet Your Mentors</h2>
-              <p className="text-lg text-muted-foreground">Guided by industry veterans with decades of collective experience in Indian and global equities.</p>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">{mentors.headline}</h2>
+              <p className="text-lg text-muted-foreground">{mentors.description}</p>
             </div>
             <Button variant="outline" className="border-primary/20 hover:bg-primary/10">View Full Team</Button>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                name: "Rahul Sharma",
-                role: "Chief Market Strategist",
-                cred: "15+ Years in Equity Markets • SEBI Registered",
-                image: "/mentor-1.jpg",
-                bio: "Former institutional desk trader. Specializes in price action and behavioral finance."
-              },
-              {
-                name: "Priya Desai",
-                role: "Head of Derivatives",
-                cred: "10+ Years Options Trader • CMT Level 3",
-                image: "/mentor-2.jpg",
-                bio: "Expert in volatility trading and complex options strategies. Manages a proprietary fund."
-              }
-            ].map((mentor, i) => (
+            {mentors.list.map((mentor, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -344,14 +267,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* TESTIMONIALS — auto-scrolling marquee, pauses on hover */}
       <section className="py-24 overflow-hidden">
         <div className="text-center max-w-3xl mx-auto mb-16 px-4 md:px-6">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Stories of Transformation</h2>
-          <p className="text-lg text-muted-foreground">Don't just take our word for it. Hear from those who took the leap.</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">{testimonials.headline}</h2>
+          <p className="text-lg text-muted-foreground">{testimonials.description}</p>
         </div>
 
-        {/* Marquee container — fades at edges */}
         <div
           className="relative"
           style={{
@@ -360,85 +282,8 @@ export default function Home() {
           }}
         >
           <div className="marquee-track flex gap-6 w-max cursor-default">
-            {[
-              {
-                quote: "URJA didn't just teach me how to read charts; they taught me how to manage my mind. The risk management principles completely changed my trading journey.",
-                name: "Vikram S.",
-                role: "IT Professional",
-                image: "/avatar-1.jpg"
-              },
-              {
-                quote: "The Options mastery program is phenomenal. The live sessions gave me the confidence to execute complex spreads that I previously found intimidating.",
-                name: "Ananya M.",
-                role: "Full-time Trader",
-                image: "/avatar-2.jpg"
-              },
-              {
-                quote: "From absolute beginner to managing my family's portfolio. The structured approach and lifetime community support are worth their weight in gold.",
-                name: "Karan P.",
-                role: "Business Owner",
-                image: "/avatar-3.jpg"
-              },
-              {
-                quote: "The live trading sessions were an eye-opener. Watching the mentors analyze live charts while explaining their reasoning is something no book can replicate.",
-                name: "Meera T.",
-                role: "Bank Manager",
-                image: "/avatar-1.jpg"
-              },
-              {
-                quote: "I was skeptical at first, but the fundamentals course paid for itself within the first month. The risk-reward frameworks are simply invaluable.",
-                name: "Rohit G.",
-                role: "Software Engineer",
-                image: "/avatar-2.jpg"
-              },
-              {
-                quote: "The lifetime community access is genuinely priceless. Getting daily market insights and trade setups from fellow URJA alumni keeps me sharp every single day.",
-                name: "Sunita R.",
-                role: "Homemaker & Investor",
-                image: "/avatar-3.jpg"
-              },
-              /* Duplicate set for seamless loop */
-              {
-                quote: "URJA didn't just teach me how to read charts; they taught me how to manage my mind. The risk management principles completely changed my trading journey.",
-                name: "Vikram S.",
-                role: "IT Professional",
-                image: "/avatar-1.jpg"
-              },
-              {
-                quote: "The Options mastery program is phenomenal. The live sessions gave me the confidence to execute complex spreads that I previously found intimidating.",
-                name: "Ananya M.",
-                role: "Full-time Trader",
-                image: "/avatar-2.jpg"
-              },
-              {
-                quote: "From absolute beginner to managing my family's portfolio. The structured approach and lifetime community support are worth their weight in gold.",
-                name: "Karan P.",
-                role: "Business Owner",
-                image: "/avatar-3.jpg"
-              },
-              {
-                quote: "The live trading sessions were an eye-opener. Watching the mentors analyze live charts while explaining their reasoning is something no book can replicate.",
-                name: "Meera T.",
-                role: "Bank Manager",
-                image: "/avatar-1.jpg"
-              },
-              {
-                quote: "I was skeptical at first, but the fundamentals course paid for itself within the first month. The risk-reward frameworks are simply invaluable.",
-                name: "Rohit G.",
-                role: "Software Engineer",
-                image: "/avatar-2.jpg"
-              },
-              {
-                quote: "The lifetime community access is genuinely priceless. Getting daily market insights and trade setups from fellow URJA alumni keeps me sharp every single day.",
-                name: "Sunita R.",
-                role: "Homemaker & Investor",
-                image: "/avatar-3.jpg"
-              },
-            ].map((test, i) => (
-              <div
-                key={i}
-                className="flex-shrink-0 w-80 p-8 rounded-2xl bg-card border border-border relative select-none"
-              >
+            {duplicatedTestimonials.map((test, i) => (
+              <div key={i} className="flex-shrink-0 w-80 p-8 rounded-2xl bg-card border border-border relative select-none">
                 <div className="text-primary text-6xl font-serif absolute top-4 right-6 opacity-10 leading-none">"</div>
                 <p className="text-muted-foreground leading-relaxed mb-8 relative z-10 italic text-sm">
                   "{test.quote}"
@@ -458,27 +303,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ & CTA SECTION */}
+      {/* FAQ + ENROLL */}
       <section id="faq" className="py-24 bg-card/30 border-t border-border/50 relative">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid lg:grid-cols-2 gap-16">
-            
+
             {/* FAQ */}
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8">Got Questions?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-8">{faq.headline}</h2>
               <Accordion type="single" collapsible className="w-full">
-                {[
-                  { q: "Do I need prior financial knowledge?", a: "Not for our Fundamentals program. We start from absolute scratch. For advanced courses, basic market knowledge is recommended." },
-                  { q: "Are the classes online or offline?", a: "We offer both hybrid formats. You can join our live interactive online streams or attend physical batches at our Mumbai center." },
-                  { q: "What is the batch size?", a: "We cap our batches at 25 students to ensure personalized attention and effective live trading sessions." },
-                  { q: "Do you provide placement support?", a: "Yes. For our advanced algorithmic trading and complete mastery tracks, we assist with placements in prop desks and brokerages." },
-                  { q: "Will I get access to recordings?", a: "Absolutely. All live sessions are recorded and available to you for lifetime review." }
-                ].map((faq, i) => (
+                {faq.list.map((item, i) => (
                   <AccordionItem key={i} value={`item-${i}`} className="border-border/50">
-                    <AccordionTrigger className="text-left font-medium hover:text-primary transition-colors">{faq.q}</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground leading-relaxed">
-                      {faq.a}
-                    </AccordionContent>
+                    <AccordionTrigger className="text-left font-medium hover:text-primary transition-colors">{item.q}</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground leading-relaxed">{item.a}</AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
@@ -487,11 +324,11 @@ export default function Home() {
             {/* ENROLL FORM */}
             <div id="enroll" className="bg-card border border-border rounded-2xl p-8 md:p-10 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-              
+
               <div className="relative z-10">
-                <h3 className="text-2xl md:text-3xl font-bold mb-3">Ready to Transform?</h3>
-                <p className="text-muted-foreground mb-8">Fill out the form below and our career counselor will get in touch to guide your next steps.</p>
-                
+                <h3 className="text-2xl md:text-3xl font-bold mb-3">{enroll.headline}</h3>
+                <p className="text-muted-foreground mb-8">{enroll.description}</p>
+
                 <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
                   <div className="grid grid-cols-2 gap-5">
                     <div className="space-y-2">
@@ -503,12 +340,12 @@ export default function Home() {
                       <Input placeholder="Doe" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Email Address</label>
                     <Input type="email" placeholder="john@example.com" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Phone Number</label>
                     <Input type="tel" placeholder="+91 98765 43210" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
@@ -516,17 +353,19 @@ export default function Home() {
 
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Program of Interest</label>
-                    <select className="flex h-10 w-full items-center justify-between rounded-md border border-border/50 bg-background/50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-                      <option value="" disabled selected>Select a program</option>
-                      <option value="fundamentals">Stock Market Fundamentals</option>
-                      <option value="technical">Technical Analysis Mastery</option>
-                      <option value="options">Options & Derivatives</option>
-                      <option value="algo">Advanced Algo Trading</option>
+                    <select
+                      defaultValue=""
+                      className="flex h-10 w-full items-center justify-between rounded-md border border-border/50 bg-background/50 px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      <option value="" disabled>Select a program</option>
+                      {programmes.courses.map((course) => (
+                        <option key={course.title} value={course.title}>{course.title}</option>
+                      ))}
                     </select>
                   </div>
 
                   <Button type="submit" size="lg" className="w-full h-12 text-base font-semibold hover-elevate mt-4">
-                    Request Callback
+                    {enroll.ctaLabel}
                   </Button>
                   <p className="text-xs text-center text-muted-foreground mt-4">
                     By submitting, you agree to our Terms of Service and Privacy Policy.
