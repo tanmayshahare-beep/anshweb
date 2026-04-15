@@ -345,14 +345,21 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Stories of Transformation</h2>
-            <p className="text-lg text-muted-foreground">Don't just take our word for it. Hear from those who took the leap.</p>
-          </div>
+      <section className="py-24 overflow-hidden">
+        <div className="text-center max-w-3xl mx-auto mb-16 px-4 md:px-6">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Stories of Transformation</h2>
+          <p className="text-lg text-muted-foreground">Don't just take our word for it. Hear from those who took the leap.</p>
+        </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+        {/* Marquee container — fades at edges */}
+        <div
+          className="relative"
+          style={{
+            maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+          }}
+        >
+          <div className="marquee-track flex gap-6 w-max cursor-default">
             {[
               {
                 quote: "URJA didn't just teach me how to read charts; they taught me how to manage my mind. The risk management principles completely changed my trading journey.",
@@ -371,30 +378,81 @@ export default function Home() {
                 name: "Karan P.",
                 role: "Business Owner",
                 image: "/avatar-3.jpg"
-              }
+              },
+              {
+                quote: "The live trading sessions were an eye-opener. Watching the mentors analyze live charts while explaining their reasoning is something no book can replicate.",
+                name: "Meera T.",
+                role: "Bank Manager",
+                image: "/avatar-1.jpg"
+              },
+              {
+                quote: "I was skeptical at first, but the fundamentals course paid for itself within the first month. The risk-reward frameworks are simply invaluable.",
+                name: "Rohit G.",
+                role: "Software Engineer",
+                image: "/avatar-2.jpg"
+              },
+              {
+                quote: "The lifetime community access is genuinely priceless. Getting daily market insights and trade setups from fellow URJA alumni keeps me sharp every single day.",
+                name: "Sunita R.",
+                role: "Homemaker & Investor",
+                image: "/avatar-3.jpg"
+              },
+              /* Duplicate set for seamless loop */
+              {
+                quote: "URJA didn't just teach me how to read charts; they taught me how to manage my mind. The risk management principles completely changed my trading journey.",
+                name: "Vikram S.",
+                role: "IT Professional",
+                image: "/avatar-1.jpg"
+              },
+              {
+                quote: "The Options mastery program is phenomenal. The live sessions gave me the confidence to execute complex spreads that I previously found intimidating.",
+                name: "Ananya M.",
+                role: "Full-time Trader",
+                image: "/avatar-2.jpg"
+              },
+              {
+                quote: "From absolute beginner to managing my family's portfolio. The structured approach and lifetime community support are worth their weight in gold.",
+                name: "Karan P.",
+                role: "Business Owner",
+                image: "/avatar-3.jpg"
+              },
+              {
+                quote: "The live trading sessions were an eye-opener. Watching the mentors analyze live charts while explaining their reasoning is something no book can replicate.",
+                name: "Meera T.",
+                role: "Bank Manager",
+                image: "/avatar-1.jpg"
+              },
+              {
+                quote: "I was skeptical at first, but the fundamentals course paid for itself within the first month. The risk-reward frameworks are simply invaluable.",
+                name: "Rohit G.",
+                role: "Software Engineer",
+                image: "/avatar-2.jpg"
+              },
+              {
+                quote: "The lifetime community access is genuinely priceless. Getting daily market insights and trade setups from fellow URJA alumni keeps me sharp every single day.",
+                name: "Sunita R.",
+                role: "Homemaker & Investor",
+                image: "/avatar-3.jpg"
+              },
             ].map((test, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-2xl bg-card border border-border relative"
+                className="flex-shrink-0 w-80 p-8 rounded-2xl bg-card border border-border relative select-none"
               >
-                <div className="text-primary text-6xl font-serif absolute top-4 right-6 opacity-20">"</div>
-                <p className="text-muted-foreground leading-relaxed mb-8 relative z-10 italic">
+                <div className="text-primary text-6xl font-serif absolute top-4 right-6 opacity-10 leading-none">"</div>
+                <p className="text-muted-foreground leading-relaxed mb-8 relative z-10 italic text-sm">
                   "{test.quote}"
                 </p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden">
+                  <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
                     <img src={test.image} alt={test.name} className="w-full h-full object-cover" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-foreground">{test.name}</h4>
-                    <p className="text-sm text-muted-foreground">{test.role}</p>
+                    <h4 className="font-bold text-foreground text-sm">{test.name}</h4>
+                    <p className="text-xs text-muted-foreground">{test.role}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
