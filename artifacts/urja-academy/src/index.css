@@ -71,19 +71,22 @@
   --sidebar: 0 0% 100%;
   --sidebar-foreground: 222 47% 11%;
   --sidebar-border: 214 32% 91%;
-  --sidebar-primary: 24 100% 50%;
+  --sidebar-primary: 220 63% 25%;
   --sidebar-primary-foreground: 0 0% 100%;
   --sidebar-accent: 210 40% 96%;
   --sidebar-accent-foreground: 222 47% 11%;
-  --sidebar-ring: 24 100% 50%;
+  --sidebar-ring: 220 63% 25%;
 
   --popover: 0 0% 100%;
   --popover-foreground: 222 47% 11%;
   --popover-border: 214 32% 91%;
 
-  /* Electric Orange Primary */
-  --primary: 24 100% 50%;
+  /* Navy Blue Primary with Gold Highlights */
+  --primary: 220 63% 25%;
   --primary-foreground: 0 0% 100%;
+
+  /* Gold highlight */
+  --gold: 43 96% 50%;
 
   --secondary: 210 40% 96%;
   --secondary-foreground: 222 47% 11%;
@@ -91,20 +94,20 @@
   --muted: 210 40% 96%;
   --muted-foreground: 215 16% 47%;
 
-  --accent: 210 40% 96%;
-  --accent-foreground: 222 47% 11%;
+  --accent: 220 40% 95%;
+  --accent-foreground: 220 63% 25%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
   --input: 214 32% 91%;
-  --ring: 24 100% 50%;
+  --ring: 220 63% 25%;
 
-  --chart-1: 24 100% 50%;
-  --chart-2: 43 100% 45%;
+  --chart-1: 220 63% 25%;
+  --chart-2: 43 96% 50%;
   --chart-3: 210 40% 60%;
-  --chart-4: 222 47% 30%;
-  --chart-5: 200 80% 50%;
+  --chart-4: 220 47% 40%;
+  --chart-5: 43 80% 65%;
 
   --app-font-sans: 'Outfit', sans-serif;
   --app-font-serif: 'Outfit', sans-serif;

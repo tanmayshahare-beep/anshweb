@@ -58,7 +58,7 @@ export default function Home() {
               
               <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
                 Master the Markets.<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-amber-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-400">
                   Command Your Future.
                 </span>
               </motion.h1>
