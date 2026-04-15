@@ -1,0 +1,67 @@
+uploads = []
+
+[[generated]]
+id = "DYTIOphxFtEFT06dDVZit"
+uri = "file://artifacts/urja-academy/public/hero.png"
+type = "image"
+title = "High-tech trading desk hero"
+
+[[generated]]
+id = "lMH7C8xdhMAUO0Ek_Wh3m"
+uri = "file://artifacts/urja-academy/public/course-1.png"
+type = "image"
+title = "Upward trend 3d render"
+
+[[generated]]
+id = "7K8Knz5qleZBgZobtJzcr"
+uri = "file://artifacts/urja-academy/public/course-2.png"
+type = "image"
+title = "Candlestick charts abstract"
+
+[[generated]]
+id = "N-G3zPODC91QrqFeOt_N1"
+uri = "file://artifacts/urja-academy/public/course-3.png"
+type = "image"
+title = "Options trading geometric"
+
+[[generated]]
+id = "Qp9AVBgkZ23NIuQS6AF3i"
+uri = "file://artifacts/urja-academy/public/course-4.png"
+type = "image"
+title = "Algo trading data streams"
+
+[[generated]]
+id = "OpvNPuebQdP1RigukmNTL"
+uri = "file://artifacts/urja-academy/public/about.png"
+type = "image"
+title = "Coaching studio ambient"
+
+[[outputs]]
+id = "ugD4Vge8N-tdOjSrFpjNr"
+uri = "file://artifacts/urja-academy/public/mentor-1.jpg"
+type = "image"
+title = "Professional portrait of an Indian male financial expert, sharp suit, confident, dark background"
+
+[[outputs]]
+id = "mnQ7pExZHr8p40VMKXmSY"
+uri = "file://artifacts/urja-academy/public/avatar-1.jpg"
+type = "image"
+title = "Professional headshot portrait of an Indian male student or young professional, smiling"
+
+[[outputs]]
+id = "UGdqlNwpwVWMQ2B6MGrGg"
+uri = "file://artifacts/urja-academy/public/avatar-2.jpg"
+type = "image"
+title = "Professional headshot portrait of an Indian female professional, confident, clean background"
+
+[[outputs]]
+id = "oLpxmnKI8PvmjygF6mJY9"
+uri = "file://artifacts/urja-academy/public/avatar-3.jpg"
+type = "image"
+title = "Professional headshot portrait of an Indian male entrepreneur, modern look"
+
+[[outputs]]
+id = "8Y2ipUQbiTAaSAlI4zNbc"
+uri = "file://artifacts/urja-academy/public/mentor-2.jpg"
+type = "image"
+title = "Professional portrait of an Indian woman in business attire, confident, clean background"
