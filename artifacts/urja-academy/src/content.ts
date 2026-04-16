@@ -15,7 +15,7 @@ export const CONTENT = {
     name: "URJA Training Academy",
     logoText: "URJA",
     logoSubtitle: "Training Academy",
-    tagline: "India's Premium Trading Academy",
+    tagline: "India's Pm Trading Academy",
   },
 
   // ----------------------------------------------------------
@@ -98,14 +98,12 @@ export const CONTENT = {
         desc: "Perfect for beginners. Understand market mechanics, basic terminology, and how to start investing safely.",
         duration: "4 Days",
         image: "/course-1.png",
-        level: "Beginner",
       },
       {
         title: "Technical Analysis Mastery",
         desc: "Read charts like a pro. Master price action, indicators, and chart patterns to time your entries and exits.",
         duration: "12 Weeks",
         image: "/course-2.png",
-        level: "Intermediate",
       },
     ],
   },
