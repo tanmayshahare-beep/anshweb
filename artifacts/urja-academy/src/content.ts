@@ -8,7 +8,6 @@
 // ============================================================
 
 export const CONTENT = {
-
   // ----------------------------------------------------------
   // SITE-WIDE
   // ----------------------------------------------------------
@@ -25,10 +24,10 @@ export const CONTENT = {
   // ----------------------------------------------------------
   nav: {
     links: [
-      { name: "About",       href: "/about" },
-      { name: "Programmes",  href: "/programmes" },
-      { name: "Why Us",      href: "/why-us" },
-      { name: "Mentors",     href: "/mentors" },
+      { name: "About", href: "/about" },
+      { name: "Programmes", href: "/programmes" },
+      { name: "Why Us", href: "/why-us" },
+      { name: "Mentors", href: "/mentors" },
     ],
     ctaLabel: "Enroll Now",
   },
@@ -43,7 +42,7 @@ export const CONTENT = {
     headlineHighlight: "Profits Follow",
     description:
       "Master the art of disciplined trading with proven strategies, real mentorship, and execution-driven learning.",
-    primaryCta:   "Start Your Journey",
+    primaryCta: "Start Your Journey",
     secondaryCta: "Explore Programmes",
   },
 
@@ -53,9 +52,9 @@ export const CONTENT = {
   // ----------------------------------------------------------
   stats: [
     { number: "5,000+", label: "Students Trained" },
-    { number: "8+",     label: "Years Experience" },
-    { number: "95%",    label: "Success Rate" },
-    { number: "10+",    label: "Expert Programmes" },
+    { number: "8+", label: "Years Experience" },
+    { number: "95%", label: "Success Rate" },
+    { number: "10+", label: "Expert Programmes" },
   ],
 
   // ----------------------------------------------------------
@@ -64,7 +63,7 @@ export const CONTENT = {
   // ----------------------------------------------------------
   about: {
     image: "/about.png",
-    headlinePre:       "Not a Generic Coaching Center.",
+    headlinePre: "Not a Generic Coaching Center.",
     headlineHighlight: "A Launchpad.",
     paragraphs: [
       '"URJA" means energy. We believe that with the right momentum and structured knowledge, anyone can decode the complexities of the stock market.',
@@ -76,9 +75,10 @@ export const CONTENT = {
       "Focus on psychology and risk management",
     ],
     badge: {
-      title:       "SEBI",
-      subtitle:    "Registered",
-      description: "Learn from certified professionals with proven track records.",
+      title: "SEBI",
+      subtitle: "Registered",
+      description:
+        "Learn from certified professionals with proven track records.",
     },
   },
 
@@ -89,36 +89,23 @@ export const CONTENT = {
   // level: shown as a badge on the course card (e.g. "Beginner")
   // ----------------------------------------------------------
   programmes: {
-    headline:    "Mastery Programmes",
-    description: "From absolute basics to algorithmic automation. Choose the track that aligns with your ambition.",
+    headline: "Mastery Programmes",
+    description:
+      "From absolute basics to algorithmic automation. Choose the track that aligns with your ambition.",
     courses: [
       {
-        title:    "Stock Market Fundamentals",
-        desc:     "Perfect for beginners. Understand market mechanics, basic terminology, and how to start investing safely.",
-        duration: "4 Weeks",
-        image:    "/course-1.png",
-        level:    "Beginner",
+        title: "Stock Market Fundamentals",
+        desc: "Perfect for beginners. Understand market mechanics, basic terminology, and how to start investing safely.",
+        duration: "4 Days",
+        image: "/course-1.png",
+        level: "Beginner",
       },
       {
-        title:    "Technical Analysis Mastery",
-        desc:     "Read charts like a pro. Master price action, indicators, and chart patterns to time your entries and exits.",
-        duration: "8 Weeks",
-        image:    "/course-2.png",
-        level:    "Intermediate",
-      },
-      {
-        title:    "Options & Derivatives",
-        desc:     "Leverage volatility. Learn advanced hedging strategies, greeks, and high-probability setups.",
-        duration: "6 Weeks",
-        image:    "/course-3.png",
-        level:    "Advanced",
-      },
-      {
-        title:    "Advanced Algo Trading",
-        desc:     "Automate your edge. Build, backtest, and deploy algorithmic trading systems using Python.",
+        title: "Technical Analysis Mastery",
+        desc: "Read charts like a pro. Master price action, indicators, and chart patterns to time your entries and exits.",
         duration: "12 Weeks",
-        image:    "/course-4.png",
-        level:    "Expert",
+        image: "/course-2.png",
+        level: "Intermediate",
       },
     ],
   },
@@ -128,20 +115,20 @@ export const CONTENT = {
   // Three differentiator cards. Icons are set in the component.
   // ----------------------------------------------------------
   whyChoose: {
-    headline:    "Why Choose URJA?",
+    headline: "Why Choose URJA?",
     description: "We don't just teach theory. We build traders.",
     features: [
       {
         title: "Active Market Mentors",
-        desc:  "Learn from traders who are in the trenches every day, not just academicians.",
+        desc: "Learn from traders who are in the trenches every day, not just academicians.",
       },
       {
         title: "Live Trading Sessions",
-        desc:  "Apply concepts in real-time with live market hours hand-holding and analysis.",
+        desc: "Apply concepts in real-time with live market hours hand-holding and analysis.",
       },
       {
         title: "Lifetime Community",
-        desc:  "Join an elite network of alumni. Get continuous support, trade setups, and market updates.",
+        desc: "Join an elite network of alumni. Get continuous support, trade setups, and market updates.",
       },
     ],
   },
@@ -151,22 +138,23 @@ export const CONTENT = {
   // image: mentor headshot in /public
   // ----------------------------------------------------------
   mentors: {
-    headline:    "Meet Your Mentors",
-    description: "Guided by industry veterans with decades of collective experience in Indian and global equities.",
+    headline: "Meet Your Mentors",
+    description:
+      "Guided by industry veterans with decades of collective experience in Indian and global equities.",
     list: [
       {
-        name:  "Rahul Sharma",
-        role:  "Chief Market Strategist",
-        cred:  "15+ Years in Equity Markets • SEBI Registered",
+        name: "Rahul Sharma",
+        role: "Chief Market Strategist",
+        cred: "15+ Years in Equity Markets • SEBI Registered",
         image: "/mentor-1.jpg",
-        bio:   "Former institutional desk trader. Specializes in price action and behavioral finance.",
+        bio: "Former institutional desk trader. Specializes in price action and behavioral finance.",
       },
       {
-        name:  "Priya Desai",
-        role:  "Head of Derivatives",
-        cred:  "10+ Years Options Trader • CMT Level 3",
+        name: "Priya Desai",
+        role: "Head of Derivatives",
+        cred: "10+ Years Options Trader • CMT Level 3",
         image: "/mentor-2.jpg",
-        bio:   "Expert in volatility trading and complex options strategies. Manages a proprietary fund.",
+        bio: "Expert in volatility trading and complex options strategies. Manages a proprietary fund.",
       },
     ],
   },
@@ -177,43 +165,50 @@ export const CONTENT = {
   // image: student avatar photo in /public
   // ----------------------------------------------------------
   testimonials: {
-    headline:    "Stories of Transformation",
-    description: "Don't just take our word for it. Hear from those who took the leap.",
+    headline: "Stories of Transformation",
+    description:
+      "Don't just take our word for it. Hear from those who took the leap.",
     list: [
       {
-        quote: "URJA didn't just teach me how to read charts; they taught me how to manage my mind. The risk management principles completely changed my trading journey.",
-        name:  "Vikram S.",
-        role:  "IT Professional",
+        quote:
+          "URJA didn't just teach me how to read charts; they taught me how to manage my mind. The risk management principles completely changed my trading journey.",
+        name: "Vikram S.",
+        role: "IT Professional",
         image: "/avatar-1.jpg",
       },
       {
-        quote: "The Options mastery program is phenomenal. The live sessions gave me the confidence to execute complex spreads that I previously found intimidating.",
-        name:  "Ananya M.",
-        role:  "Full-time Trader",
+        quote:
+          "The Options mastery program is phenomenal. The live sessions gave me the confidence to execute complex spreads that I previously found intimidating.",
+        name: "Ananya M.",
+        role: "Full-time Trader",
         image: "/avatar-2.jpg",
       },
       {
-        quote: "From absolute beginner to managing my family's portfolio. The structured approach and lifetime community support are worth their weight in gold.",
-        name:  "Karan P.",
-        role:  "Business Owner",
+        quote:
+          "From absolute beginner to managing my family's portfolio. The structured approach and lifetime community support are worth their weight in gold.",
+        name: "Karan P.",
+        role: "Business Owner",
         image: "/avatar-3.jpg",
       },
       {
-        quote: "The live trading sessions were an eye-opener. Watching the mentors analyze live charts while explaining their reasoning is something no book can replicate.",
-        name:  "Meera T.",
-        role:  "Bank Manager",
+        quote:
+          "The live trading sessions were an eye-opener. Watching the mentors analyze live charts while explaining their reasoning is something no book can replicate.",
+        name: "Meera T.",
+        role: "Bank Manager",
         image: "/avatar-1.jpg",
       },
       {
-        quote: "I was skeptical at first, but the fundamentals course paid for itself within the first month. The risk-reward frameworks are simply invaluable.",
-        name:  "Rohit G.",
-        role:  "Software Engineer",
+        quote:
+          "I was skeptical at first, but the fundamentals course paid for itself within the first month. The risk-reward frameworks are simply invaluable.",
+        name: "Rohit G.",
+        role: "Software Engineer",
         image: "/avatar-2.jpg",
       },
       {
-        quote: "The lifetime community access is genuinely priceless. Getting daily market insights and trade setups from fellow URJA alumni keeps me sharp every single day.",
-        name:  "Sunita R.",
-        role:  "Homemaker & Investor",
+        quote:
+          "The lifetime community access is genuinely priceless. Getting daily market insights and trade setups from fellow URJA alumni keeps me sharp every single day.",
+        name: "Sunita R.",
+        role: "Homemaker & Investor",
         image: "/avatar-3.jpg",
       },
     ],
@@ -253,9 +248,10 @@ export const CONTENT = {
   // ENROLL / CONTACT FORM
   // ----------------------------------------------------------
   enroll: {
-    headline:    "Ready to Transform?",
-    description: "Fill out the form below and our career counselor will get in touch to guide your next steps.",
-    ctaLabel:    "Request Callback",
+    headline: "Ready to Transform?",
+    description:
+      "Fill out the form below and our career counselor will get in touch to guide your next steps.",
+    ctaLabel: "Request Callback",
   },
 
   // ----------------------------------------------------------
@@ -267,14 +263,14 @@ export const CONTENT = {
       "Empowering everyday people to master the stock market through structured, practical, and expert-led training. Transform your financial future with us.",
     contact: {
       address: "101, URJA Tower, Financial District, Mumbai, India",
-      phone:   "+91 98765 43210",
-      email:   "hello@urjatraining.in",
+      phone: "+91 98765 43210",
+      email: "hello@urjatraining.in",
     },
     social: {
-      twitter:   "#",   // Replace "#" with your actual profile URL
-      linkedin:  "#",
-      instagram: "#",
-      facebook:  "#",
+      twitter: "#", // Replace "#" with your actual profile URL
+      linkedin: "#",
+      instagram: "",
+      facebook: "#",
     },
   },
 };
