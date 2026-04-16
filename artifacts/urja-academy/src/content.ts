@@ -269,7 +269,7 @@ export const CONTENT = {
     social: {
       twitter: "#", // Replace "#" with your actual profile URL
       linkedin: "#",
-      instagram: "",
+      instagram: "https://www.instagram.com/urjatradingacademy/",
       facebook: "#",
     },
   },
