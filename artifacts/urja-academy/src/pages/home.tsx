@@ -290,14 +290,9 @@ export default function Home() {
                 <p className="text-muted-foreground leading-relaxed mb-8 relative z-10 italic text-sm">
                   "{test.quote}"
                 </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
-                    <img src={test.image} alt={test.name} className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-foreground text-sm">{test.name}</h4>
-                    <p className="text-xs text-muted-foreground">{test.role}</p>
-                  </div>
+                <div>
+                  <h4 className="font-bold text-foreground text-sm">{test.name}</h4>
+                  <p className="text-xs text-muted-foreground">{test.role}</p>
                 </div>
               </div>
             ))}

@@ -123,14 +123,9 @@ export default function Mentors() {
                   {[...Array(5)].map((_, j) => <Star key={j} className="w-4 h-4 fill-current" />)}
                 </div>
                 <p className="text-muted-foreground leading-relaxed mb-6 italic">"{test.quote}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
-                    <img src={test.image} alt={test.name} className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm">{test.name}</h4>
-                    <p className="text-xs text-muted-foreground">{test.role}</p>
-                  </div>
+                <div>
+                  <h4 className="font-bold text-sm">{test.name}</h4>
+                  <p className="text-xs text-muted-foreground">{test.role}</p>
                 </div>
               </motion.div>
             ))}
