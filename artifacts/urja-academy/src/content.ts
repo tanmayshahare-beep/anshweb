@@ -25,10 +25,10 @@ export const CONTENT = {
   // ----------------------------------------------------------
   nav: {
     links: [
-      { name: "About",       href: "#about" },
-      { name: "Programmes",  href: "#programmes" },
-      { name: "Why Us",      href: "#why-us" },
-      { name: "Mentors",     href: "#mentors" },
+      { name: "About",       href: "/about" },
+      { name: "Programmes",  href: "/programmes" },
+      { name: "Why Us",      href: "/why-us" },
+      { name: "Mentors",     href: "/mentors" },
     ],
     ctaLabel: "Enroll Now",
   },

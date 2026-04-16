@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, TrendingUp, Users, BookOpen, Award, Target, Zap, Shield, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Accordion,
   AccordionContent,
@@ -11,6 +10,7 @@ import {
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { CONTENT } from "@/content";
+import { Link } from "wouter";
 
 const { site, hero, stats, about, programmes, whyChoose, mentors, testimonials, faq, enroll } = CONTENT;
 
@@ -61,16 +61,16 @@ export default function Home() {
               </motion.p>
 
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
-                <a href="#enroll">
+                <Link href="/contact">
                   <Button size="lg" className="h-14 px-8 text-base font-semibold w-full sm:w-auto hover-elevate">
                     {hero.primaryCta} <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
-                </a>
-                <a href="#programmes">
+                </Link>
+                <Link href="/programmes">
                   <Button variant="outline" size="lg" className="h-14 px-8 text-base font-semibold w-full sm:w-auto border-primary/20 hover:bg-primary/10 hover:text-primary transition-colors">
                     {hero.secondaryCta}
                   </Button>
-                </a>
+                </Link>
               </motion.div>
             </motion.div>
           </div>
@@ -187,11 +187,11 @@ export default function Home() {
                     <div className="flex items-center text-sm font-medium text-muted-foreground">
                       <Play className="w-4 h-4 mr-2" /> {course.duration}
                     </div>
-                    <a href="#enroll">
+                    <Link href="/contact">
                       <Button variant="ghost" className="hover:bg-primary hover:text-primary-foreground">
                         Enroll <ArrowRight className="ml-2 w-4 h-4" />
                       </Button>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -240,7 +240,9 @@ export default function Home() {
               <h2 className="text-3xl md:text-5xl font-bold mb-6">{mentors.headline}</h2>
               <p className="text-lg text-muted-foreground">{mentors.description}</p>
             </div>
-            <Button variant="outline" className="border-primary/20 hover:bg-primary/10">View Full Team</Button>
+            <Link href="/mentors">
+              <Button variant="outline" className="border-primary/20 hover:bg-primary/10">View Full Team</Button>
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -321,56 +323,33 @@ export default function Home() {
               </Accordion>
             </div>
 
-            {/* ENROLL FORM */}
-            <div id="enroll" className="bg-card border border-border rounded-2xl p-8 md:p-10 shadow-2xl relative overflow-hidden">
+            {/* ENROLL CTA */}
+            <div id="enroll" className="bg-card border border-border rounded-2xl p-8 md:p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-
               <div className="relative z-10">
-                <h3 className="text-2xl md:text-3xl font-bold mb-3">{enroll.headline}</h3>
-                <p className="text-muted-foreground mb-8">{enroll.description}</p>
-
-                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-                  <div className="grid grid-cols-2 gap-5">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">First Name</label>
-                      <Input placeholder="John" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Last Name</label>
-                      <Input placeholder="Doe" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">Email Address</label>
-                    <Input type="email" placeholder="john@example.com" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">Phone Number</label>
-                    <Input type="tel" placeholder="+91 98765 43210" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">Program of Interest</label>
-                    <select
-                      defaultValue=""
-                      className="flex h-10 w-full items-center justify-between rounded-md border border-border/50 bg-background/50 px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                      <option value="" disabled>Select a program</option>
-                      {programmes.courses.map((course) => (
-                        <option key={course.title} value={course.title}>{course.title}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <Button type="submit" size="lg" className="w-full h-12 text-base font-semibold hover-elevate mt-4">
-                    {enroll.ctaLabel}
+                <h3 className="text-2xl md:text-3xl font-bold mb-4">{enroll.headline}</h3>
+                <p className="text-muted-foreground mb-8 leading-relaxed">{enroll.description}</p>
+                <ul className="space-y-3 mb-10">
+                  {[
+                    "Free academic counselling session",
+                    "Flexible batch timings — online & offline",
+                    "EMI options available",
+                    "Lifetime recording access"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-sm font-medium">
+                      <CheckCircle2 className="text-primary w-5 h-5 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/contact">
+                  <Button size="lg" className="w-full h-12 text-base font-semibold hover-elevate">
+                    {enroll.ctaLabel} <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
-                  <p className="text-xs text-center text-muted-foreground mt-4">
-                    By submitting, you agree to our Terms of Service and Privacy Policy.
-                  </p>
-                </form>
+                </Link>
+                <p className="text-xs text-center text-muted-foreground mt-4">
+                  No commitment. Our counselor will guide your next steps.
+                </p>
               </div>
             </div>
 
