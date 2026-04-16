@@ -32,16 +32,12 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="bg-primary p-1.5 rounded-md text-primary-foreground group-hover:bg-primary/90 transition-colors">
-              <TrendingUp className="w-5 h-5" />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-foreground">
-              {site.logoText}
-              <span className="text-muted-foreground font-medium text-sm ml-2 hidden sm:inline-block">
-                {site.logoSubtitle}
-              </span>
-            </span>
+          <Link href="/" className="flex items-center group">
+            <img
+              src="/logo.png"
+              alt={site.name}
+              className="h-10 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop nav */}

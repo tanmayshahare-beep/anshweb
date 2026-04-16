@@ -1,4 +1,4 @@
-import { TrendingUp, Mail, Phone, MapPin, Twitter, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Mail, Phone, MapPin, Twitter, Linkedin, Instagram, Facebook } from "lucide-react";
 import { CONTENT } from "@/content";
 
 const { site, nav, programmes, footer } = CONTENT;
@@ -9,13 +9,8 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="bg-primary p-1.5 rounded-md text-primary-foreground">
-                <TrendingUp className="w-5 h-5" />
-              </div>
-              <span className="text-xl font-bold tracking-tight text-foreground">
-                {site.logoText}
-              </span>
+            <div className="mb-6">
+              <img src="/logo.png" alt={site.name} className="h-10 w-auto object-contain" />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               {footer.description}

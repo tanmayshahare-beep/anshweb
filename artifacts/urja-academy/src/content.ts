@@ -39,10 +39,10 @@ export const CONTENT = {
   // ----------------------------------------------------------
   hero: {
     image: "/hero.png",
-    headline: "Master the Markets.",
-    headlineHighlight: "Command Your Future.",
+    headline: "Execution Matters",
+    headlineHighlight: "Profits Follow",
     description:
-      "URJA empowers everyday people to become confident investors. Learn through structured, practical, expert-led training designed for real-world results.",
+      "Master the art of disciplined trading with proven strategies, real mentorship, and execution-driven learning.",
     primaryCta:   "Start Your Journey",
     secondaryCta: "Explore Programmes",
   },
