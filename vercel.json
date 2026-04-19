@@ -1,16 +1,9 @@
 {
-  "buildCommand": "pnpm install && pnpm -r --filter @workspace/urja-academy run build",
-  "installCommand": "pnpm install",
+  "buildCommand": "pnpm -r --filter @workspace/urja-academy run build",
   "framework": "vite",
-  "outputDirectory": "dist",
+  "outputDirectory": "packages/urja-academy/dist",
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
