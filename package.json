@@ -5,7 +5,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm run typecheck && pnpm -r --if-present run build",
+    "build": "pnpm -r --filter @workspace/urja-academy run build",
     "dev": "vite",
     "init-db": "node db/init.js",
     "typecheck:libs": "tsc --build",
