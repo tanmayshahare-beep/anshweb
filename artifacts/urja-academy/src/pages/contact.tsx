@@ -1,17 +1,19 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, Loader2, CheckCircle } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { CONTENT } from "@/content";
+import { useToast } from "@/hooks/use-toast";
 
-const { enroll, footer, programmes, site } = CONTENT;
+const { enroll, footer, programmes } = CONTENT;
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
 const staggerContainer = {
@@ -20,6 +22,49 @@ const staggerContainer = {
 };
 
 export default function Contact() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      program: formData.get("program"),
+      goal: formData.get("goal"),
+    };
+
+    try {
+      const response = await fetch("/api/enroll", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) throw new Error("Failed to submit");
+
+      setIsSuccess(true);
+      toast({
+        title: "Enrollment Request Sent!",
+        description: "Our counselor will call you back within 24 hours.",
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: "Please try again later or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
@@ -114,61 +159,82 @@ export default function Contact() {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
                 <div className="relative z-10">
-                  <h3 className="text-2xl font-bold mb-2">Enroll Now</h3>
-                  <p className="text-muted-foreground mb-8 text-sm">Fill in your details and we'll call you back within 24 hours.</p>
-
-                  <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium">First Name</label>
-                        <Input placeholder="Arjun" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
+                  {isSuccess ? (
+                    <div className="text-center py-12">
+                      <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-6">
+                        <CheckCircle className="w-10 h-10" />
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium">Last Name</label>
-                        <Input placeholder="Sharma" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
-                      </div>
+                      <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
+                      <p className="text-muted-foreground mb-8">Your request has been received. Our team will contact you shortly.</p>
+                      <Button onClick={() => setIsSuccess(false)} variant="outline">Send another request</Button>
                     </div>
+                  ) : (
+                    <>
+                      <h3 className="text-2xl font-bold mb-2">Enroll Now</h3>
+                      <p className="text-muted-foreground mb-8 text-sm">Fill in your details and we'll call you back within 24 hours.</p>
 
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Email Address</label>
-                      <Input type="email" placeholder="arjun@example.com" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
-                    </div>
+                      <form className="space-y-5" onSubmit={handleSubmit}>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">First Name</label>
+                            <Input name="firstName" required placeholder="Arjun" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">Last Name</label>
+                            <Input name="lastName" required placeholder="Sharma" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
+                          </div>
+                        </div>
 
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Phone Number</label>
-                      <Input type="tel" placeholder="+91 98765 43210" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
-                    </div>
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium">Email Address</label>
+                          <Input name="email" type="email" required placeholder="arjun@example.com" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
+                        </div>
 
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Program of Interest</label>
-                      <select
-                        defaultValue=""
-                        className="flex h-10 w-full rounded-md border border-border/50 bg-background/50 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                      >
-                        <option value="" disabled>Select a program</option>
-                        {programmes.courses.map((course) => (
-                          <option key={course.title} value={course.title}>{course.title}</option>
-                        ))}
-                      </select>
-                    </div>
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium">Phone Number</label>
+                          <Input name="phone" type="tel" required placeholder="+91 98765 43210" className="bg-background/50 border-border/50 focus-visible:ring-primary" />
+                        </div>
 
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Your Goal (optional)</label>
-                      <Textarea
-                        placeholder="e.g. I want to trade full-time within 2 years..."
-                        className="bg-background/50 border-border/50 focus-visible:ring-primary resize-none"
-                        rows={3}
-                      />
-                    </div>
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium">Program of Interest</label>
+                          <select
+                            name="program"
+                            required
+                            defaultValue=""
+                            className="flex h-10 w-full rounded-md border border-border/50 bg-background/50 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                          >
+                            <option value="" disabled>Select a program</option>
+                            {programmes.courses.map((course) => (
+                              <option key={course.title} value={course.title}>{course.title}</option>
+                            ))}
+                          </select>
+                        </div>
 
-                    <Button type="submit" size="lg" className="w-full h-12 text-base font-semibold hover-elevate">
-                      <Send className="w-4 h-4 mr-2" /> {enroll.ctaLabel}
-                    </Button>
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium">Your Goal (optional)</label>
+                          <Textarea
+                            name="goal"
+                            placeholder="e.g. I want to trade full-time within 2 years..."
+                            className="bg-background/50 border-border/50 focus-visible:ring-primary resize-none"
+                            rows={3}
+                          />
+                        </div>
 
-                    <p className="text-xs text-center text-muted-foreground">
-                      By submitting, you agree to our Terms of Service and Privacy Policy.
-                    </p>
-                  </form>
+                        <Button type="submit" size="lg" disabled={isSubmitting} className="w-full h-12 text-base font-semibold hover-elevate">
+                          {isSubmitting ? (
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          ) : (
+                            <Send className="w-4 h-4 mr-2" />
+                          )}
+                          {isSubmitting ? "Submitting..." : enroll.ctaLabel}
+                        </Button>
+
+                        <p className="text-xs text-center text-muted-foreground">
+                          By submitting, you agree to our Terms of Service and Privacy Policy.
+                        </p>
+                      </form>
+                    </>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -181,3 +247,4 @@ export default function Contact() {
     </div>
   );
 }
+
