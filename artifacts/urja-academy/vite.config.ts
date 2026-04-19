@@ -37,9 +37,10 @@ export default defineConfig({
     },
     dedupe: ["react", "react-dom"],
   },
-  root: path.resolve(import.meta.dirname),
+  // Set root to the project root for build purposes
+  root: path.resolve(import.meta.dirname, ".."),
   build: {
-    outDir: path.resolve(import.meta.dirname, "../../dist"), // Explicitly target root dist
+    outDir: "dist", // Output directly to the root 'dist' folder
     emptyOutDir: true,
   },
   server: {
