@@ -39,7 +39,7 @@ export default defineConfig({
   },
   root: path.resolve(import.meta.dirname),
   build: {
-    outDir: "dist", // Output to dist within artifacts/urja-academy
+    outDir: path.resolve(import.meta.dirname, "../../dist"), // Explicitly target root dist
     emptyOutDir: true,
   },
   server: {

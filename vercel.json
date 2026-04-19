@@ -1,8 +1,8 @@
 {
-  "buildCommand": "pnpm install && cd artifacts/urja-academy && pnpm run build && cd ../..",
+  "buildCommand": "pnpm install && pnpm -r --filter @workspace/urja-academy run build",
   "installCommand": "pnpm install",
   "framework": "vite",
-  "outputDirectory": "artifacts/urja-academy/dist",
+  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/api/(.*)",
