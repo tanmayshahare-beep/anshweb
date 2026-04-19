@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm -r --filter @workspace/urja-academy run build && mv artifacts/urja-academy/dist/public ./dist",
+  "buildCommand": "pnpm -r --filter @workspace/urja-academy run build && mkdir -p ./dist && cp -r artifacts/urja-academy/dist/public/* ./dist/",
   "installCommand": "pnpm install",
   "framework": "vite",
   "outputDirectory": "dist",
